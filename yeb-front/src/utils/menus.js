@@ -9,7 +9,6 @@ export const initMenu=(router,store)=>{
         if (data) {
             // 格式化 Router
             let fmtRoutes = formatRoutes(data);
-            console.log(fmtRoutes);
             //添加到router
             router.addRoutes(fmtRoutes);
             // 存到 store

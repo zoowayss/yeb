@@ -16,6 +16,23 @@ Vue.prototype.putRequest=putRequest
 Vue.prototype.deleteRequest=deleteRequest
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+
+
+// router.beforeEach((to, from, next) => {
+//   if (to.path == '/') {
+//     next();
+//   } else {
+//     if (!window.sessionStorage.getItem("")) {
+//       console.log('123');
+//       initMenu(router, store);
+//       next();
+//     } else {
+//       next('/?redirect=' + to.path);
+//     }
+//   }
+// })
+
+
 new Vue({
   router,
   store,
@@ -27,6 +44,7 @@ router.beforeEach((to, from, next) => {
     initMenu(router, store);
     //判断用户信息是否存在
     if (!window.sessionStorage.getItem('user')) {
+      // console.log('123');
       return getRequest('/admin/info').then(resp=>{
         if (resp) {
           //存入用户信息
@@ -37,6 +55,10 @@ router.beforeEach((to, from, next) => {
     }
     next();
   }else {
-    next();
+    next('/login');
   }
 });
+
+
+
+

@@ -22,9 +22,23 @@ spring:
       # 连接最大存活时间，0表示永久存活，默认1800000（30分钟）
       max-lifetime: 1800000
       # 连接超时时间，默认30000（30秒）
-connection-timeout: 30000
-# 测试连接是否可用的查询语句
-connection-test-query: SELECT 1
+      connection-timeout: 30000
+      # 测试连接是否可用的查询语句
+      connection-test-query: SELECT 1
+
+  redis:
+    #
+    timeout: 10000ms
+    host: 192.168.222.128
+    port: 6379
+    database: 0
+    lettuce:
+      pool:
+        max-active: 1024
+        max-wait: 10000ms
+        max-idle: 200
+        min-idle: 5
+
 # Mybatis-plus配置
 mybatis-plus:
   #配置Mapper映射文件
@@ -37,7 +51,7 @@ mybatis-plus:
 ## Mybatis SQL 打印(方法接口所在的包，不是Mapper.xml所在的包)
 logging:
   level:
-    com.xxxx.server.mapper: debug
+    com.awei.server.mapper: debug
 
 jwt:
   #jwt存储的请求头

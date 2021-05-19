@@ -60,14 +60,11 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading = true;
-          // alert('submit!');
           this.postRequest('/login',this.loginForm).then(resp=>{
-            // alert(JSON.stringify(resp));
             if(resp){
               this.loading = false;
               // 存储用户token
               const tokenStr=resp.obj.tokenHead+resp.obj.token
-              console.log(tokenStr);
               window.sessionStorage.setItem('tokenStr',tokenStr)
               this.$router.push('/home')
             }
