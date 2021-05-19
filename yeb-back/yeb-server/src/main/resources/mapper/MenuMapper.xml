@@ -31,6 +31,16 @@
 
         </collection>
     </resultMap>
+
+    <resultMap id="MenusWithRole" type="com.awei.server.pojo.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.awei.server.pojo.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+
+
+    </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
@@ -60,6 +70,23 @@
           AND mr.rid = ar.rid
           AND ar.adminId = #{id}
           AND m2.enabled = 1
+    </select>
+    <!-- 根据角色获取菜单列表-->
+    <select id="getMenusWithROle" resultMap="MenusWithRole">
+        SELECT
+            m.*,
+            r.id AS rid,
+            r.name AS rname,
+            r.nameZh AS rnameZh
+        FROM
+            t_menu m,
+            t_role r,
+            t_menu_role mr
+        WHERE
+            m.id = mr.mid
+          AND r.id = mr.rid
+        ORDER BY
+            m.id
     </select>
 
 </mapper>

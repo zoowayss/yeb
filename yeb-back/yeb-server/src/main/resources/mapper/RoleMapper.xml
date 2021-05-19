@@ -14,4 +14,18 @@
         id, name, nameZh
     </sql>
 
+    <!--根据用户id 查询角色列表-->
+    <select id="getRoles" resultType="com.awei.server.pojo.Role">
+        SELECT
+            r.id,
+            r.NAME,
+            r.nameZh
+        FROM
+            t_role r
+                LEFT JOIN t_admin_role ar ON r.id = ar.rid
+        WHERE
+            ar.adminId =#{adminId}
+
+    </select>
+
 </mapper>

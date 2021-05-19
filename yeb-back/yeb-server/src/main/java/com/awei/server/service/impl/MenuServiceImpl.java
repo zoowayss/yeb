@@ -32,6 +32,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+    /**
+     * 根据用户id 查询菜单列表
+     * @return
+     */
     @Override
     public List<Menu> getMenusByAdminId() {
         Integer adminId = ((Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
@@ -44,6 +48,16 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             valueOperations.set("menu_" + adminId, menus);
         }
         return menus;
+    }
+
+    /**
+     * 根据角色获取菜单列表
+     * @return
+     */
+    @Override
+    public List<Menu> getMenusWithRole() {
+
+        return menuMapper.getMenusWithROle();
     }
 
 }

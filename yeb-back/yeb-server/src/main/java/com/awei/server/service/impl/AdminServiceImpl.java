@@ -1,10 +1,11 @@
 package com.awei.server.service.impl;
 
-import com.awei.server.config.security.JwtTokenUtil;
+import com.awei.server.config.security.component.JwtTokenUtil;
 import com.awei.server.mapper.AdminMapper;
+import com.awei.server.mapper.RoleMapper;
 import com.awei.server.pojo.Admin;
-import com.awei.server.pojo.Menu;
 import com.awei.server.pojo.RespBean;
+import com.awei.server.pojo.Role;
 import com.awei.server.service.IAdminService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -16,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -46,6 +46,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
+    @Autowired
+    private RoleMapper roleMapper;
     @Autowired
     private AdminMapper adminMapper;
     /**
@@ -97,6 +99,16 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public Admin getAdminByUsername(String username) {
         return adminMapper.selectOne(new QueryWrapper<Admin>().eq("username", username));
+    }
+
+    /**
+     * 根据用户id 查询角色列表
+     * @param adminId
+     * @return
+     */
+    @Override
+    public List<Role> getRoles(Integer adminId) {
+        return roleMapper.getRoles(adminId);
     }
 
 

@@ -3,6 +3,7 @@ package com.awei.server.service;
 import com.awei.server.pojo.Admin;
 import com.awei.server.pojo.Menu;
 import com.awei.server.pojo.RespBean;
+import com.awei.server.pojo.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,6 @@ public interface IAdminService extends IService<Admin> {
 
     Admin getAdminByUsername(String username);
 
-
+    List<Role> getRoles(Integer adminId);
 
 }
