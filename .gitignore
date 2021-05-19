@@ -1,3 +1,5 @@
 yeb-back/yeb-server/target
 yeb-front/node_modules
 .idea
+yeb-back/.idea
+yeb-front/.idea

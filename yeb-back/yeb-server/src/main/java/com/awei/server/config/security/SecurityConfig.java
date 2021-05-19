@@ -3,7 +3,6 @@ package com.awei.server.config.security;
 import com.awei.server.pojo.Admin;
 import com.awei.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -87,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                "/logout",
                 "/css/**",
                 "/js/**",
+                "/img/**",
                 "/index.html",
                 "/favicon.ico",
                 "/doc.html",

@@ -41,7 +41,7 @@ export default {
       loginForm: {
         username: 'admin',
         password: '123',
-        code: ''
+        code: 'rwqe'
       },
       loading:false,
       checked: true,
