@@ -60,4 +60,13 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         return menuMapper.getMenusWithROle();
     }
 
+    /**
+     * 查询所有菜单
+     * @return
+     */
+    @Override
+    public List<Menu> getAllMenus() {
+        return menuMapper.getAllMenus();
+    }
+
 }

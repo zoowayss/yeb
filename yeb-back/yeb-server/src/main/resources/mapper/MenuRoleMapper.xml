@@ -13,5 +13,13 @@
     <sql id="Base_Column_List">
         id, mid, rid
     </sql>
+    <!--更新角色菜单-->
+    <insert id="insertRecord">
+        INSERT INTO t_menu_role ( mid, rid )
+        VALUES
+        <foreach collection="mids" item="mid" separator=",">
+            (#{mid},#{rid})
+        </foreach>
+    </insert>
 
 </mapper>
