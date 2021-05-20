@@ -24,6 +24,7 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
         for (ConfigAttribute configAttribute : collection) {
             //当前url 所需要的角色
             String needRole = configAttribute.getAttribute();
+            System.out.println(needRole);
             // 判断角色是否登录 即可 访问的角色，此角色在 CustomFilter 中设置
             if ("ROLE_LOGIN".equals(needRole)) {
                 //判断是否登录

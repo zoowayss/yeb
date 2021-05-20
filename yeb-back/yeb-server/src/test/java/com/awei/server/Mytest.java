@@ -1,10 +1,14 @@
 package com.awei.server;
 
 import com.awei.server.pojo.Admin;
+import com.awei.server.pojo.Menu;
 import com.awei.server.service.IAdminService;
+import com.awei.server.service.IMenuService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 /**
  * @Description: fjklas
@@ -15,13 +19,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class Mytest {
 
     @Autowired
-    private IAdminService adminService;
+    private IMenuService menuService;
+
     @Test
     public void irjwqoir() {
 
-        Admin admin = adminService.getAdminByUsername("admin");
-        System.out.println(admin.toString());
-
+        List<Menu> menus = menuService.getMenusWithRole();
+        menus.forEach(menu -> System.out.println(menu));
     }
 
 }
