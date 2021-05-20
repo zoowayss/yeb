@@ -64,9 +64,13 @@ export default {
             if(resp){
               this.loading = false;
               // 存储用户token
-              const tokenStr=resp.obj.tokenHead+resp.obj.token
-              window.sessionStorage.setItem('tokenStr',tokenStr)
-              this.$router.push('/home')
+              const tokenStr=resp.obj.tokenHead+' '+resp.obj.token
+              window.sessionStorage.setItem('tokenStr', tokenStr);
+              //跳转首页
+              let path = this.$route.query.redirect;
+              console.log(tokenStr);
+              console.log(path);
+              this.$router.replace((path == '/' || path == undefined) ? '/home' : path);
             }
           })
         } else {
