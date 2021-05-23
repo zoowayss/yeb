@@ -1,9 +1,14 @@
 package com.awei.server.controller;
 
+import com.awei.server.pojo.Department;
+import com.awei.server.service.IDepartmentService;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @Description: 测试controller
@@ -13,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "测试controller 接口")
 public class HelloController {
+
+    @Autowired
+    private IDepartmentService departmentService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -27,5 +35,10 @@ public class HelloController {
     @GetMapping("/employee/advanced/hello")
     public String hello3() {
         return "/employee/advanced/hello";
+    }
+
+    @GetMapping("/test/department")
+    public List<Department> getAlldepartments() {
+       return departmentService.getAllDepartments(-1);
     }
 }

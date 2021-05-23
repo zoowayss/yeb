@@ -12,9 +12,21 @@
         <result column="isParent" property="isParent" />
     </resultMap>
 
+    <resultMap id="DepartmentWithChildren" type="com.awei.server.pojo.Department" extends="BaseResultMap">
+        <collection property="children" ofType="com.awei.server.pojo.Department"
+                    select="com.awei.server.mapper.DepartmentMapper.getAllDepartments" column="id"/>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, parentId, depPath, enabled, isParent
     </sql>
+    <select id="getAllDepartments" resultMap="DepartmentWithChildren">
+        select <include refid="Base_Column_List"></include>
+        from t_department
+    where   parentId=#{parentId}
+
+    </select>
+
 
 </mapper>
