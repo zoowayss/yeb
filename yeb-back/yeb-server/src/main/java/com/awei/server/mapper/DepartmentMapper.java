@@ -1,6 +1,7 @@
 package com.awei.server.mapper;
 
 import com.awei.server.pojo.Department;
+import com.awei.server.pojo.RespBean;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -21,4 +22,11 @@ public interface DepartmentMapper extends BaseMapper<Department> {
      * @return
      */
     List<Department> getAllDepartments(Integer i);
+
+    /**
+     * 添加部门
+     * @param dep
+     * @return
+     */
+    RespBean addDep(Department dep);
 }

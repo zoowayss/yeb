@@ -21,6 +21,19 @@
     <sql id="Base_Column_List">
         id, name, parentId, depPath, enabled, isParent
     </sql>
+
+    <!--添加部门    statementType=CALLABLE 表示执行存储过程-->
+    <select id="addDep" statementType="CALLABLE">
+        call addDep(
+            #{name,mode=IN,jdbcType=VARCHAR},
+            #{parentId,mode=IN,jdbcType=INTEGER},
+            #{enabled,mode=IN,jdbcType=BOOLEAN},
+            #{result,mode=OUT,jdbcType=INTEGER},
+            #{id,mode=OUT,jdbcType=INTEGER}
+            )
+
+    </select>
+
     <select id="getAllDepartments" resultMap="DepartmentWithChildren">
         select <include refid="Base_Column_List"></include>
         from t_department
