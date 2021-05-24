@@ -29,4 +29,11 @@ public interface DepartmentMapper extends BaseMapper<Department> {
      * @return
      */
     RespBean addDep(Department dep);
+
+    /**
+     * 删除部门
+     * @param dep
+     * @return
+     */
+    RespBean deleteDep(Department dep);
 }
