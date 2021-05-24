@@ -16,10 +16,40 @@
         <result column="remark" property="remark" />
     </resultMap>
 
+    <resultMap id="AdminWithRoles" type="com.awei.server.pojo.Admin" extends="BaseResultMap">
+        <collection property="roles" ofType="com.awei.server.pojo.Role">
+            <result column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, phone, telephone, address, enabled, username, password, userFace, remark
     </sql>
+
+    <!-- 获取所有操作员-->
+    <select id="getAllAdmins" resultMap="AdminWithRoles">
+        SELECT
+            a.*,
+            r.id rid,
+            r.`name` rname,
+            r.nameZh rnameZh
+        FROM
+            t_admin a,
+            t_admin_role ar,
+            t_role r
+        WHERE
+            a.id = ar.adminId
+          AND r.id = ar.rid
+          AND a.id != 1
+        <if test="null!=keywords and ''!=keywords">
+            AND a.name like "%"#{keywords}"%"
+        </if>
+        order by a.id
+    </select>
+
+
 
 </mapper>

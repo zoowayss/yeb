@@ -111,5 +111,16 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         return roleMapper.getRoles(adminId);
     }
 
+    /**
+     * 获取所有操作员
+     * @param keyword
+     * @return
+     */
+    @Override
+    public List<Admin> getAllAdmins(String keyword) {
+        Admin admin = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return adminMapper.getAllAdmins(admin.getId(), keyword);
+    }
+
 
 }
