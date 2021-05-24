@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,7 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author shizuwei
  * @since 2021-03-09
  */
-@Data
+@Data   //  生成getter setter 方法
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
@@ -54,6 +52,7 @@ public class Admin implements Serializable , UserDetails {
     private String address;
 
     @ApiModelProperty(value = "是否启用")
+    @Getter(AccessLevel.NONE)       // 不会去生成getter 方法，要用 userDetailService 的 isEnable方法
     private Boolean enabled;
 
     @ApiModelProperty(value = "用户名")
