@@ -32,7 +32,15 @@
     <!-- 获取所有操作员-->
     <select id="getAllAdmins" resultMap="AdminWithRoles">
         SELECT
-            a.*,
+           a.id,
+           a.name,
+           a.phone,
+           a.telephone,
+           a.address,
+           a.enabled,
+           a.username,
+           a.userFace,
+           a.remark,
             r.id rid,
             r.`name` rname,
             r.nameZh rnameZh
