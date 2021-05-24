@@ -2,8 +2,10 @@ package com.awei.server.service.impl;
 
 import com.awei.server.config.security.component.JwtTokenUtil;
 import com.awei.server.mapper.AdminMapper;
+import com.awei.server.mapper.AdminRoleMapper;
 import com.awei.server.mapper.RoleMapper;
 import com.awei.server.pojo.Admin;
+import com.awei.server.pojo.AdminRole;
 import com.awei.server.pojo.RespBean;
 import com.awei.server.pojo.Role;
 import com.awei.server.service.IAdminService;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -50,6 +53,10 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private RoleMapper roleMapper;
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private AdminRoleMapper adminRoleMapper;
+
     /**
      * 登录之后返回token
      * @param username
@@ -120,6 +127,23 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public List<Admin> getAllAdmins(String keyword) {
         Admin admin = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return adminMapper.getAllAdmins(admin.getId(), keyword);
+    }
+
+    /**
+     * 更新操作员角色
+     * @param adminId
+     * @param rids
+     * @return
+     */
+    @Override
+    @Transactional
+    public RespBean addAdminRole(Integer adminId, Integer[] rids) {
+        adminRoleMapper.delete(new QueryWrapper<AdminRole>().eq("adminId", adminId));
+        Integer result = adminRoleMapper.addAdminRole(adminId, rids);
+        if (rids.length == result) {
+            return RespBean.success("更新成功！");
+        }
+        return RespBean.error("更新失败");
     }
 
 
