@@ -12,7 +12,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 
@@ -57,5 +59,24 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         List<Map<String, Object>> maps = employeeMapper.selectMaps(new QueryWrapper<Employee>().select("max(workID)"));
 
         return new RespBean(200,null,String.format("%08d", Integer.parseInt(maps.get(0).get("max(workID)").toString()) + 1));
+    }
+
+    /**
+     * 添加员工
+     * @param emp
+     * @return
+     */
+    @Override
+    public RespBean addEmp(Employee emp) {
+        //处理合同期限，保留两位小数
+        LocalDate beginContract = emp.getBeginContract();
+        LocalDate endContract = emp.getEndContract();
+        long days = beginContract.until(endContract, ChronoUnit.DAYS);
+        DecimalFormat df = new DecimalFormat("##.00");
+        emp.setContractTerm(Double.parseDouble(df.format(days / 365.00)));
+        if (1 == employeeMapper.insert(emp)) {
+            return RespBean.success("添加成功！");
+        }
+        return RespBean.error("添加失败！");
     }
 }
