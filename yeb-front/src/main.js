@@ -15,7 +15,7 @@ Vue.prototype.postRequest=postRequest
 Vue.prototype.putRequest=putRequest
 Vue.prototype.deleteRequest=deleteRequest
 Vue.config.productionTip = false
-Vue.use(ElementUI);
+Vue.use(ElementUI,{size:'small'});
 
 new Vue({
   router,
