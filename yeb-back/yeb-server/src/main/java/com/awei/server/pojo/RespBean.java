@@ -19,7 +19,6 @@ public class RespBean {
     private String msg;
     private Object obj;
 
-
     public static RespBean success(String msg) {
         return new RespBean(200, msg, null);
     }

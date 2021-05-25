@@ -26,12 +26,11 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
 
     /**
      * 获取所有部门
-     * @param i 父部门id
      * @return
      */
     @Override
-    public List<Department> getAllDepartments(Integer i) {
-        return departmentMapper.getAllDepartments(i);
+    public List<Department> getAllDepartments() {
+        return departmentMapper.getAllDepartments(-1);
     }
 
     /**

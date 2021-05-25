@@ -31,7 +31,7 @@ public class Mytest {
     @Test
     public void irjwqoir() {
 
-        List<Department> menus = departmentService.getAllDepartments(-1);
+        List<Department> menus = departmentService.getAllDepartments();
         menus.forEach(menu -> System.out.println(menu));
         try {
             System.out.println(new ObjectMapper().writeValueAsString(menus));

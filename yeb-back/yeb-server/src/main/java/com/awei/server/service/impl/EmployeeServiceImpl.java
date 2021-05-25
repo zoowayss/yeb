@@ -2,8 +2,10 @@ package com.awei.server.service.impl;
 
 import com.awei.server.mapper.EmployeeMapper;
 import com.awei.server.pojo.Employee;
+import com.awei.server.pojo.RespBean;
 import com.awei.server.pojo.RespPageBean;
 import com.awei.server.service.IEmployeeService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -41,5 +45,17 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         IPage<Employee> empByPage = employeeMapper.getEmpByPage(page, emp, beginDateScope);
         RespPageBean respPageBean = new RespPageBean(empByPage.getTotal(), empByPage.getRecords());
         return respPageBean;
+    }
+
+    /**
+     * 获取工号
+     *
+     * @return
+     */
+    @Override
+    public RespBean maxWorkId() {
+        List<Map<String, Object>> maps = employeeMapper.selectMaps(new QueryWrapper<Employee>().select("max(workID)"));
+
+        return new RespBean(200,null,String.format("%08d", Integer.parseInt(maps.get(0).get("max(workID)").toString()) + 1));
     }
 }

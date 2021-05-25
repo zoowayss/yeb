@@ -1,6 +1,7 @@
 package com.awei.server.service;
 
 import com.awei.server.pojo.Employee;
+import com.awei.server.pojo.RespBean;
 import com.awei.server.pojo.RespPageBean;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -25,4 +26,11 @@ public interface IEmployeeService extends IService<Employee> {
      * @return
      */
     RespPageBean getEmpByPage(Integer currentPage, Integer size, Employee emp, LocalDate[] beginDateScope);
+
+    /**
+     * 获取工号
+     * @return
+     */
+    RespBean maxWorkId();
+
 }

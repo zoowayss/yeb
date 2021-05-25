@@ -39,6 +39,6 @@ public class HelloController {
 
     @GetMapping("/test/department")
     public List<Department> getAlldepartments() {
-       return departmentService.getAllDepartments(-1);
+       return departmentService.getAllDepartments();
     }
 }

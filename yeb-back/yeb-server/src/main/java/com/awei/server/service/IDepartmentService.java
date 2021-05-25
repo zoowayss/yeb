@@ -21,7 +21,7 @@ public interface IDepartmentService extends IService<Department> {
      * @param i 父部门id
      * @return
      */
-    List<Department> getAllDepartments(Integer i);
+    List<Department> getAllDepartments();
 
     /**
      * 添加部门
