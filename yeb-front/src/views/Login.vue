@@ -60,19 +60,28 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading = true;
+
+
           this.postRequest('/login',this.loginForm).then(resp=>{
-            if(resp){
+            if(resp) {
               this.loading = false;
               // 存储用户token
-              const tokenStr=resp.obj.tokenHead+' '+resp.obj.token
+              const tokenStr = resp.obj.tokenHead + ' ' + resp.obj.token
               window.sessionStorage.setItem('tokenStr', tokenStr);
+              if (!window.sessionStorage.getItem('user')) {
+                this.getRequest('admin/info').then(resp=>{
+                  if (resp) {
+                    window.sessionStorage.setItem('user', JSON.stringify(resp));
+                  }
+                })
+              }
               //跳转首页
               let path = this.$route.query.redirect;
-              console.log(tokenStr);
               console.log(path);
               this.$router.replace((path == '/' || path == undefined) ? '/home' : path);
             }
           })
+
         } else {
           this.$message.error('请输入所有字段');
           return false;

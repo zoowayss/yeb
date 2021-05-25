@@ -1,9 +1,11 @@
 import {getRequest} from "@/utils/api";
 
 export const initMenu=(router,store)=>{
+    console.log('router.length:'+store.state.routes.length);
     if (store.state.routes.length > 0) {
         return;
     }
+
 
     getRequest('/system/cfg/menu').then(data=>{
         if (data) {

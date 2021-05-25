@@ -32,7 +32,14 @@
           </el-menu>
         </el-aside>
         <el-main>
-          <router-view/>
+          <el-breadcrumb separator-class="el-icon-arrow-right" v-if="this.$router.currentRoute.path!='/home'">
+            <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item><a href="/">{{this.$router.currentRoute.name}}</a></el-breadcrumb-item>
+          </el-breadcrumb>
+          <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
+            欢迎来到云E办系统
+          </div>
+          <router-view class="homeRouterview"/>
         </el-main>
       </el-container>
     </el-container>
@@ -112,5 +119,15 @@ export default {
   height: 48px;
   border-radius: 24px;
   margin-left: 8px;
+}
+.homeWelcome {
+  text-align: center;
+  font-size: 30px;
+  font-family: 华文楷体;
+  color: #409eff;
+  padding-top: 50px;
+}
+.homeRouterview{
+  margin-top: 10px;
 }
 </style>
