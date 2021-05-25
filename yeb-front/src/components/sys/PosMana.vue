@@ -4,7 +4,7 @@
       <el-input
           size="small"
           class="addPosInput"
-          placeholder="添加职位"
+          placeholder="添加职位..."
           suffix-icon="el-icon-plus"
           @keydown.enter.native="addPosition"
           v-model="position.name">
@@ -17,7 +17,7 @@
           stripe
           border
           :data="positions"
-          style="width: 70%"
+          style="width: 780px"
           @selection-change="handleSelectionChange">
         <el-table-column
             type="selection"
