@@ -77,7 +77,6 @@ export default {
               }
               //跳转首页
               let path = this.$route.query.redirect;
-              console.log(path);
               this.$router.replace((path == '/' || path == undefined) ? '/home' : path);
             }
           })
