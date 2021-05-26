@@ -34,7 +34,7 @@ public class DepartmentController {
 
     @ApiOperation(value = "添加部门")
     @PostMapping("/")
-    public RespBean addDep(Department dep) {
+    public RespBean addDep(@RequestBody Department dep) {
         return departmentService.addDep(dep);
     }
 
