@@ -1,7 +1,6 @@
 import {getRequest} from "@/utils/api";
 
 export const initMenu=(router,store)=>{
-    console.log('router.length:'+store.state.routes.length);
     if (store.state.routes.length > 0) {
         return;
     }
@@ -39,7 +38,6 @@ export const formatRoutes=(routes)=>{
             iconCls: iconCls,
             children: children,
             component(resolve) {
-                console.log(component);
                 if (component.startsWith('Home')) {
                     require(['../views/' + component + '.vue'], resolve);
                 }else {
