@@ -7,7 +7,7 @@
                   prefix-icon="el-icon-search"
                   v-model="empName"
                   @keydown.enter.native="initEmps"
-                  @clear="initEmps"                  
+                  @clear="initEmps"
                   clearable></el-input>
         <el-button size="mini" type="primary" icon="el-icon-search" @click="initEmps">搜索</el-button>
         <el-button size="mini" type="primary">
