@@ -1,7 +1,9 @@
 package com.awei.server;
 
+import com.awei.server.mapper.EmployeeMapper;
 import com.awei.server.pojo.Admin;
 import com.awei.server.pojo.Department;
+import com.awei.server.pojo.Employee;
 import com.awei.server.pojo.Menu;
 import com.awei.server.service.IAdminService;
 import com.awei.server.service.IDepartmentService;
@@ -38,6 +40,17 @@ public class Mytest {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Autowired
+    private EmployeeMapper employeeMapper;
+
+    @Test
+    public void testEmpMappergetEmp() {
+        List<Employee> emps = employeeMapper.getEmp(null);
+        emps.forEach(emp -> System.out.println(emp));
+
     }
 
 }

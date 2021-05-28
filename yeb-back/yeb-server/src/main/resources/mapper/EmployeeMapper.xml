@@ -118,4 +118,42 @@
         e.id
     </select>
 
+    <!--查询员工-->
+    <select id="getEmp" resultMap="EmpInfo">
+        SELECT
+        e.*,
+        n.id nid,
+        n.NAME nname,
+        p.id pid,
+        p.NAME pname,
+        d.id did,
+        d.NAME dname,
+        j.id jid,
+        j.NAME jname,
+        ps.id psid,
+        ps.NAME psname
+        FROM
+        t_employee e,
+        t_nation n,
+        t_politics_status p,
+        t_department d,
+        t_joblevel j,
+        t_position ps
+        WHERE
+        n.id = e.nationId
+        AND d.id = e.departmentId
+        AND j.id = e.jobLevelId
+        AND ps.id = e.posId
+        AND p.id = e.politicId
+        AND n.id=e.nationId
+
+
+        <if test="null!=id">
+            and e.id =#{id}
+        </if>
+        order by
+            e.id
+    </select>
+
+
 </mapper>
