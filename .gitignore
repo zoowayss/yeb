@@ -1,5 +1,6 @@
 yeb-back/*/target
 yeb-back/*.iml
+yeb-back/*/*.iml
 yeb-front/node_modules
 .idea
 yeb-back/.idea
