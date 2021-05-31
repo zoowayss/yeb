@@ -1,3 +1,8 @@
 spring:
   profiles:
     active: 113
+  rabbitmq:
+    username: root
+    password: root
+    host: 192.168.0.113
+    port: 5672
