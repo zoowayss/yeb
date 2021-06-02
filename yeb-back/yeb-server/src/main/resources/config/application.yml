@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: 113
+    active: desktop
   rabbitmq:
     username: root
     password: root
