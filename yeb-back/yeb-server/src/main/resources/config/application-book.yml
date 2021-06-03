@@ -39,6 +39,16 @@ spring:
         max-idle: 200
         min-idle: 5
 
+  rabbitmq:
+    username: root
+    password: root
+    host: 192.168.222.118
+    port: 5672
+    #消息确认回调
+    publisher-confirm-type: correlated
+    #消息失败回调
+    publisher-returns: true
+
 # Mybatis-plus配置
 mybatis-plus:
   #配置Mapper映射文件
