@@ -3,5 +3,6 @@ yeb-back/*.iml
 yeb-back/*/*.iml
 yeb-front/node_modules
 .idea
+*.iml
 yeb-back/.idea
 yeb-front/.idea
