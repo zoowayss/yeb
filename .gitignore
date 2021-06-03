@@ -1,8 +1,4 @@
-yeb-back/*/target
-yeb-back/*.iml
-yeb-back/*/*.iml
-yeb-front/node_modules
-.idea
+*target/
 *.iml
-yeb-back/.idea
-yeb-front/.idea
+*.idea
+yeb-front/node_modules
