@@ -104,7 +104,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
 
             //发送消息
-            rabbitTemplate.convertAndSend("MailConstants.MAIL_EXCHANGE_NAME",MailConstants.MAIL_ROUTING_KEY, employee,new CorrelationData(msgId));
+            rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME,MailConstants.MAIL_ROUTING_KEY, employee,new CorrelationData(msgId));
             return RespBean.success("添加成功！");
         }
         return RespBean.error("添加失败！");

@@ -42,7 +42,7 @@ spring:
   rabbitmq:
     username: root
     password: root
-    host: 192.168.222.118
+    host: 192.168.222.128
     port: 5672
     #消息确认回调
     publisher-confirm-type: correlated
