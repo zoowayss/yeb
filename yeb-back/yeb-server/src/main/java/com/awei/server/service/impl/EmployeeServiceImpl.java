@@ -88,6 +88,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
             //消息入库
             String msgId = UUID.randomUUID().toString();    //数据库记录发送的消息
+//            String msgId = "123456";
             MailLog mailLog = new MailLog();
             mailLog.setMsgId(msgId);
             mailLog.setEid(employee.getId());

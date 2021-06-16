@@ -17,6 +17,18 @@ spring:
     # 端口 （不同邮箱端口号不同）
     port: 587
 
+  redis:
+    #
+    timeout: 10000ms
+    host: 192.168.222.128
+    port: 6379
+    database: 0
+    lettuce:
+      pool:
+        max-active: 1024
+        max-wait: 10000ms
+        max-idle: 200
+        min-idle: 5
 
 
 
@@ -26,3 +38,6 @@ spring:
     password: root
     host: 192.168.222.128
     port: 5672
+    listener:
+      simple:
+        acknowledge-mode: manual
