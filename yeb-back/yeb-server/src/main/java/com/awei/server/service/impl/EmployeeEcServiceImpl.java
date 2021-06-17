@@ -2,6 +2,7 @@ package com.awei.server.service.impl;
 
 import com.awei.server.mapper.EmployeeEcMapper;
 import com.awei.server.pojo.EmployeeEc;
+import com.awei.server.pojo.RespPageBean;
 import com.awei.server.service.IEmployeeEcService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,4 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EmployeeEcServiceImpl extends ServiceImpl<EmployeeEcMapper, EmployeeEc> implements IEmployeeEcService {
-
 }

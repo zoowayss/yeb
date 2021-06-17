@@ -57,6 +57,28 @@
             <result column="dname" property="name"/>
         </association>
     </resultMap>
+
+    <resultMap id="EmployeeWithSalary" type="com.awei.server.pojo.Employee" extends="BaseResultMap">
+        <association property="salary" javaType="com.awei.server.pojo.Salary">
+            <id column="sid" property="id"/>
+            <result column="sname" property="name"/>
+            <result column="sbasicSalary" property="basicSalary"/>
+            <result column="sbonus" property="bonus"/>
+            <result column="slunchSalary" property="lunchSalary"/>
+            <result column="strafficSalary" property="trafficSalary"/>
+            <result column="sallSalary" property="allSalary"/>
+            <result column="spensionPer" property="pensionPer"/>
+            <result column="spensionBase" property="pensionBase"/>
+            <result column="smedicalPer" property="medicalPer"/>
+            <result column="smedicalBase" property="medicalBase"/>
+            <result column="saccumulationFundPer" property="accumulationFundPer"/>
+            <result column="saccumulationFundBase" property="accumulationFundBase"/>
+        </association>
+        <association property="department" javaType="com.awei.server.pojo.Department">
+            <result column="dname" property="name"/>
+        </association>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
@@ -153,6 +175,36 @@
         </if>
         order by
             e.id
+    </select>
+
+    <!-- 获取所有员工账套-->
+    <select id="getEmpWithSalary" resultMap="EmployeeWithSalary">
+        SELECT
+            e.*,
+            d.`name` dname,
+            s.id sid,
+            s.`name` sname,
+            s.basicSalary sbasicSalary,
+            s.bonus sbonus,
+            s.lunchSalary slunchSalary,
+            s.trafficSalary strafficSalary,
+            s.allSalary sallSalary,
+            s.pensionPer spensionPer,
+            s.pensionBase spensionBase,
+            s.medicalBase smedicalBase,
+            s.medicalPer smedicalPer,
+            s.accumulationFundPer saccumulationFundPer,
+            s.accumulationFundBase saccumulationFundBase
+        FROM
+            t_employee e,
+            t_salary s,
+            t_department d
+        WHERE
+            e.departmentId = d.id
+          AND e.salaryId = s.id
+        ORDER BY
+            e.id
+
     </select>
 
 
