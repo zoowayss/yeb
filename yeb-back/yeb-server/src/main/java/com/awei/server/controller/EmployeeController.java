@@ -146,7 +146,7 @@ public class EmployeeController {
     }
 
     @ApiOperation(value = "导入员工数据")
-    @PutMapping("/import")
+    @PostMapping("/import")
     public RespBean importEmp(MultipartFile file) {
         ImportParams params = new ImportParams();
         //去掉标题行
