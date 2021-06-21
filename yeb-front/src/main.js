@@ -10,10 +10,12 @@ import {putRequest} from "@/utils/api";
 import {deleteRequest} from "@/utils/api";
 import {initMenu} from "@/utils/menus";
 import 'font-awesome/css/font-awesome.css'
+import {downloadRequest} from "@/utils/download";
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest=postRequest
 Vue.prototype.putRequest=putRequest
 Vue.prototype.deleteRequest=deleteRequest
+Vue.prototype.downloadRequest = downloadRequest;
 Vue.config.productionTip = false
 Vue.use(ElementUI,{size:'small'});
 

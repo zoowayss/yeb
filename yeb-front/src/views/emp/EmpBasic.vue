@@ -19,12 +19,24 @@
       <div>
         <!--        导入导出 搜索-->
 
-        <el-button size="mini" type="success">
-          <i class="fa fa-level-up" aria-hidden="true"></i>导入数据
-        </el-button>
+        <el-upload
+            style="display: inline-flex;margin-right: 8px"
+            action="/employee/basic/import"
+            :show-file-list="false"
+            :headers="headers"
+            :before-upload="beforeUpload"
+            :disabled="importDataDisabled"
+            :on-success="onSuccess"
+            :on-error="onError"
+            :file-list="fileList">
+          <el-button size="mini" :icon="importDataBtnicon" type="success">
+            {{importDataBtnText}}
+          </el-button>
+        </el-upload>
 
-        <el-button size="mini" type="success">
-          <i class="fa fa-level-down" aria-hidden="true"></i> 导出数据
+
+        <el-button @click="exportData" icon="el-icon-download" size="mini" type="success">
+           导出数据
         </el-button>
 
         <el-button size="mini" type="primary" icon="el-icon-plus">添加员工</el-button>
@@ -236,6 +248,12 @@ export default {
   name: "EmpBasic",
   data() {
     return {
+      headers: {
+        Authorization: window.sessionStorage.getItem("tokenStr")
+      },
+      importDataDisabled: false,
+      importDataBtnText:'导入数据',
+      importDataBtnicon:'el-icon-upload2',
       emps: [],
       loading:false,
       total: 0,
@@ -249,6 +267,26 @@ export default {
   },
 
   methods: {
+    onSuccess() {
+      this.importDataBtnicon = 'el-icon-upload2';
+      this.importDataBtnText = '导入数据';
+      this.importDataDisabled = false;
+      this.initEmps();
+    },
+    onError() {
+      this.importDataBtnicon = 'el-icon-upload2';
+      this.importDataBtnText = '导入数据';
+      this.importDataDisabled = false;
+    },
+    beforeUpload() {
+      this.importDataBtnicon = 'el-icon-loading';
+      this.importDataBtnText = '正在导入';
+      this.importDataDisabled = true;
+
+    },
+    exportData() {
+      this.downloadRequest('/employee/basic/export');
+    },
 
     sizeChange(size) {
       this.size = size;
