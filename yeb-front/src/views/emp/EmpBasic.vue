@@ -28,8 +28,7 @@
             :before-upload="beforeUpload"
             :disabled="importDataDisabled"
             :on-success="onSuccess"
-            :on-error="onError"
-            :file-list="fileList">
+            :on-error="onError">
           <el-button size="mini" :icon="importDataBtnicon" type="success">
             {{ importDataBtnText }}
           </el-button>
@@ -310,14 +309,14 @@
           </template>
         </el-table-column>
         <el-table-column
-            width="200"
             fixed="right"
+            width="200"
             label="操作">
           <template slot-scope="scope">
-            <el-button style="padding:3px" size="mini" type="primary">编辑</el-button>
-            <el-button style="padding:3px" size="mini" type="primary">查看高级资料</el-button>
-            <el-button style="padding:3px" size="mini" type="danger">删除</el-button>
-
+            <el-button @click="showEditEmpView(scope.row)" style="padding: 3px" size="mini">编辑</el-button>
+            <el-button style="padding: 3px" size="mini" type="primary">查看高级资料</el-button>
+            <el-button @click="deleteEmp(scope.row)" style="padding: 3px" size="mini" type="danger">删除
+            </el-button>
           </template>
         </el-table-column>
 
@@ -338,7 +337,7 @@
     </div>
 
     <el-dialog
-        :title="添加员工"
+        title="添加员工"
         :visible.sync="dialogVisible"
         width="80%">
       <div>
@@ -725,6 +724,31 @@ export default {
   },
 
   methods: {
+    deleteEmp(data) {
+      this.$confirm('此操作将永久删除【' + data.name + '】, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.deleteRequest("/employee/basic/" + data.id).then(resp => {
+          if (resp) {
+            this.initEmps();
+          }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
+    },
+    showEditEmpView(data) {
+      this.initPositions();
+      this.title = '编辑员工信息';
+      this.emp = data;
+      this.inputDepName = data.department.name;
+      this.dialogVisible = true;
+    },
     showDepView2() {
       this.popVisible2 = !this.popVisible2
     },
