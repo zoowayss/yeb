@@ -337,7 +337,7 @@
     </div>
 
     <el-dialog
-        title="添加员工"
+        :title="title"
         :visible.sync="dialogVisible"
         width="80%">
       <div>
@@ -351,7 +351,7 @@
             </el-col>
             <el-col :span="5">
               <el-form-item label="性别:" prop="gender">
-                <el-radio-group v-model="emp.gender">
+                <el-radio-group v-model="emp.gender" style="margin-top: 8px">
                   <el-radio label="男">男</el-radio>
                   <el-radio label="女">女</el-radio>
                 </el-radio-group>
@@ -555,7 +555,7 @@
             </el-col>
             <el-col :span="6">
               <el-form-item label="聘用形式:" prop="engageForm">
-                <el-radio-group v-model="emp.engageForm">
+                <el-radio-group v-model="emp.engageForm" style="margin-top: 8px">
                   <el-radio label="劳动合同">劳动合同</el-radio>
                   <el-radio label="劳务合同">劳务合同</el-radio>
                 </el-radio-group>
@@ -563,7 +563,7 @@
             </el-col>
             <el-col :span="7">
               <el-form-item label="婚姻状况:" prop="wedlock">
-                <el-radio-group v-model="emp.wedlock">
+                <el-radio-group v-model="emp.wedlock" style="margin-top: 8px">
                   <el-radio label="已婚">已婚</el-radio>
                   <el-radio label="未婚">未婚</el-radio>
                   <el-radio label="离异">离异</el-radio>
@@ -572,7 +572,7 @@
             </el-col>
             <el-col :span="6">
               <el-form-item label="在职状态:" prop="workState">
-                <el-radio-group v-model="emp.workState">
+                <el-radio-group v-model="emp.workState" style="margin-top: 8px">
                   <el-radio label="在职">在职</el-radio>
                   <el-radio label="离职">离职</el-radio>
                 </el-radio-group>
@@ -582,7 +582,7 @@
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button @click="dialogVisible=false">取 消</el-button>
     <el-button type="primary" @click="doAddEmp">确 定</el-button>
   </span>
     </el-dialog>
@@ -595,6 +595,7 @@ export default {
   name: "EmpBasic",
   data() {
     return {
+      title:'',
       popVisible2:false,
       showAdvanceSearchView:false,
 
@@ -673,7 +674,7 @@ export default {
       loading: false,
       total: 0,
       currentPage: 1,
-      size: 20,
+      size: 10,
       empName: '',
       defaultProps: {
         children: 'children',
@@ -758,6 +759,40 @@ export default {
       this.popVisible2 = !this.popVisible2
     },
     showAddEmpView() {
+      this.title="添加员工信息";
+      this.emp= {
+        id:null,
+        name: '',
+            gender: '',
+            birthday: '',
+            idCard: '',
+            wedlock: '',
+            nationId: null,
+            nativePlace: '',
+            politicId: null,
+            email: '',
+            phone: '',
+            address: '',
+            departmentId: null,
+            jobLevelId: null,
+            posId: null,
+            engageForm: '',
+            tiptopDegree: '',
+            specialty: '',
+            school: '',
+            beginDate: null,
+            workState: '',
+            workID: '',
+            contractTerm: null,
+            conversionTime: '',
+            notWorkDate: '',
+            beginContract: '',
+            endContract: '',
+            workAge: null,
+            salaryId: null,
+            salary: null
+      };
+      this.inputDepName = '';
       this.getMaxWordID();
       this.dialogVisible = true;
     },
@@ -895,7 +930,7 @@ export default {
 
     initEmps(type) {
       this.loading = true;
-      let url = '/employee/basic/?page=' + this.page + '&size=' + this.size;
+      let url = '/employee/basic/?currentPage=' + this.currentPage + '&size=' + this.size;
       if (type && type == 'advanced') {
         if (this.searchValue.politicId) {
           url += '&politicId=' + this.searchValue.politicId;
