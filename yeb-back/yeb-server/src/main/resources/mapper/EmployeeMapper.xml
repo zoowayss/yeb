@@ -196,12 +196,9 @@
             s.accumulationFundPer saccumulationFundPer,
             s.accumulationFundBase saccumulationFundBase
         FROM
-            t_employee e,
-            t_salary s,
-            t_department d
-        WHERE
-            e.departmentId = d.id
-          AND e.salaryId = s.id
+            t_employee e
+                LEFT JOIN t_salary s ON e.salaryId = s.id
+                LEFT JOIN t_department d ON e.departmentId = d.id
         ORDER BY
             e.id
 
