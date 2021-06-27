@@ -101,13 +101,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         //放行静态资源
         web.ignoring().antMatchers(
+                "/css/**",
                 "/login",
                 "/logout",
                 "/test/**",
-                "/css/**",
                 "/js/**",
                 "/img/**",
                 "/index.html",
+                "/fonts/**",
                 "/favicon.ico",
                 "/doc.html",
                 "/captcha",
