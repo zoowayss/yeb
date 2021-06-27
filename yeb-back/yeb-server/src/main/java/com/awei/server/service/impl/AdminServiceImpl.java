@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -72,10 +73,10 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         }*/
 
         String captcha = (String) request.getSession().getAttribute("captcha");
-        // 运行时打开，测试时懒得写验证码
-//        if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)) {
-//            return RespBean.error("验证码填写错误！");
-//        }
+//         运行时打开，测试时懒得写验证码
+        if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)) {
+            return RespBean.error("验证码填写错误！");
+        }
 
         //登录
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);

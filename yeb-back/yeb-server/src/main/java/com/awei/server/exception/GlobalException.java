@@ -1,6 +1,7 @@
 package com.awei.server.exception;
 
 import com.awei.server.pojo.RespBean;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -23,5 +24,13 @@ public class GlobalException {
             return RespBean.error("该数据有关联数据，操作失败");
         }
         return RespBean.error("数据库异常，操作失败！");
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public RespBean noUser(AuthenticationException e) {
+        if (e instanceof AuthenticationException) {
+            return RespBean.error("用户名不存在");
+        }
+        return RespBean.error("用户名密码不正确");
     }
 }

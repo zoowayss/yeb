@@ -39,9 +39,9 @@ export default {
     return {
       captchaUrl: '/captcha?time='+new Date(),
       loginForm: {
-        username: 'admin',
-        password: '123',
-        code: 'rwqe'
+        username: '',
+        password: '',
+        code: ''
       },
       loading:false,
       checked: true,
@@ -60,8 +60,6 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading = true;
-
-
           this.postRequest('/login',this.loginForm).then(resp=>{
             if(resp) {
               this.loading = false;
@@ -86,6 +84,7 @@ export default {
           return false;
         }
       });
+      this.loading = false;
     },
 
   }
