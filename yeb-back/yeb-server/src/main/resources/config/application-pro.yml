@@ -5,7 +5,7 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.222.128:3306/yeb?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://mysql:3306/yeb?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
     username: root
     password: root
     hikari:
@@ -29,7 +29,7 @@ spring:
   redis:
     #
     timeout: 10000ms
-    host: 192.168.222.128
+    host: redis
     port: 6379
     database: 0
     lettuce:
