@@ -5,9 +5,9 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.222.128:3306/yeb?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://47.96.76.101:3306/yeb?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: Szw159421
     hikari:
       # 连接池名
       pool-name: DateHikariCP
@@ -27,9 +27,9 @@ spring:
       connection-test-query: SELECT 1
 
   redis:
-    #
+    # 47.96.76.101
     timeout: 10000ms
-    host: 192.168.222.128
+    host: 120.79.94.132
     port: 6379
     database: 0
     lettuce:
@@ -38,11 +38,13 @@ spring:
         max-wait: 10000ms
         max-idle: 200
         min-idle: 5
+  session:
+    store-type: redis
 
   rabbitmq:
     username: root
-    password: root
-    host: 192.168.222.128
+    password: Szw159421
+    host: 47.96.76.101
     port: 5672
     #消息确认回调
     publisher-confirm-type: correlated

@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <groupId>com.awei</groupId>
     <artifactId>yeb-mail</artifactId>
@@ -46,10 +46,10 @@
         </dependency>
 
         <!-- 下面两个依赖为打war 包时 开启-->
-        <dependency>
+       <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!-- 移除嵌入式tomcat插件 -->
+            &lt;!&ndash; 移除嵌入式tomcat插件 &ndash;&gt;
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -62,7 +62,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 

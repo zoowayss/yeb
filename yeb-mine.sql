@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 192.168.222.128
+ Source Server         : 120.79.94.132
  Source Server Type    : MySQL
  Source Server Version : 50734
- Source Host           : 192.168.222.128:3306
+ Source Host           : 120.79.94.132:3306
  Source Schema         : yeb
 
  Target Server Type    : MySQL
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 23/06/2021 19:30:25
+ Date: 02/07/2021 23:56:01
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `t_admin`  (
   `userFace` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户头像',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_admin
@@ -43,6 +43,7 @@ INSERT INTO `t_admin` VALUES (2, '何淑华', '18875971675', '41413109', '河北
 INSERT INTO `t_admin` VALUES (3, '安淑华123', '14588110811', '50603155', '山东省凤英县长寿银川街l座', 1, 'naqiao', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3556250646,826820692&fm=26&gp=0.jpg', NULL);
 INSERT INTO `t_admin` VALUES (4, '林宇', '15761248727', '25546253', '宁夏回族自治区帆市翔安昆明路b座 672985', 1, 'leisu', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1788492201,4239922408&fm=26&gp=0.jpg', NULL);
 INSERT INTO `t_admin` VALUES (5, '武军', '18030710396', '27523842', '宁夏回族自治区秀兰县涪城邯郸路t座 618651', 1, 'hanli', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=688063297,1540419727&fm=26&gp=0.jpg', NULL);
+INSERT INTO `t_admin` VALUES (6, '共有用户', '18030710396', '27523842', '宁夏回族自治区秀兰县涪城邯郸路t座 618651', 1, 'guest', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=688063297,1540419727&fm=26&gp=0.jpg', NULL);
 
 -- ----------------------------
 -- Table structure for t_admin_role
@@ -57,7 +58,7 @@ CREATE TABLE `t_admin_role`  (
   INDEX `adminId`(`adminId`) USING BTREE,
   CONSTRAINT `t_admin_role_ibfk_1` FOREIGN KEY (`adminId`) REFERENCES `t_admin` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `t_admin_role_ibfk_2` FOREIGN KEY (`rid`) REFERENCES `t_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 106 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 107 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_admin_role
@@ -74,6 +75,7 @@ INSERT INTO `t_admin_role` VALUES (91, 4, 4);
 INSERT INTO `t_admin_role` VALUES (92, 4, 5);
 INSERT INTO `t_admin_role` VALUES (104, 2, 3);
 INSERT INTO `t_admin_role` VALUES (105, 2, 4);
+INSERT INTO `t_admin_role` VALUES (106, 6, 8);
 
 -- ----------------------------
 -- Table structure for t_appraise
@@ -174,7 +176,7 @@ CREATE TABLE `t_employee`  (
   CONSTRAINT `t_employee_ibfk_4` FOREIGN KEY (`nationId`) REFERENCES `t_nation` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `t_employee_ibfk_5` FOREIGN KEY (`politicId`) REFERENCES `t_politics_status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `t_employee_ibfk_6` FOREIGN KEY (`salaryId`) REFERENCES `t_salary` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 301 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 309 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_employee
@@ -279,6 +281,14 @@ INSERT INTO `t_employee` VALUES (97, '原红霞', '男', '1997-04-07', '34170119
 INSERT INTO `t_employee` VALUES (98, '王玉英', '女', '1998-03-12', '370282193508208316', '已婚', 1, '英县', 7, 'liaochao@gmail.com', '14798666739', '湖北省贵阳县花溪汕尾街e座 501635', 13, 5, 3, '劳动合同', '高中', '中国语言文学', '中国科学技术大学', '2017-12-19', '在职', '00000098', 2.23, '2017-11-02', NULL, '2018-05-08', '2019-10-21', NULL, 3);
 INSERT INTO `t_employee` VALUES (99, '张红梅', '女', '1991-07-18', '350923199911240828', '已婚', 1, '燕市', 2, 'yili@hotmail.com', '13506023869', '浙江省兰州县大兴侯路x座 732564', 2, 8, 4, '劳动合同', '高中', '电子工程', '上海交通大学', '2017-11-27', '在职', '00000099', 2.4, '2018-03-13', NULL, '2019-01-30', '2019-07-04', NULL, 1);
 INSERT INTO `t_employee` VALUES (100, '李强', '男', '1994-02-17', '330127200203300889', '已婚', 1, '淑兰县', 4, 'fang76@ds.cn', '15703517874', '重庆市凤兰市山亭马路l座 594007', 5, 2, 1, '劳务合同', '高中', '无', '上海交通大学', '2015-12-14', '在职', '00000100', 5.96, '2017-09-06', NULL, '2017-06-16', '2019-06-08', NULL, 3);
+INSERT INTO `t_employee` VALUES (301, '韦梅', '女', '1999-11-20', '341502198810196427', '未婚', 1, '英市', 11, 'xia53@gangjing.cn', '15567487644', '贵州省洁市清城汕尾街d座 ', 3, 5, 5, '劳动合同', '博士', '电子工程', '中国科学技术大学', '2018-10-16', '在职', '00000001', 1.98, '2018-08-29', NULL, '2017-09-03', '2019-08-26', NULL, 4);
+INSERT INTO `t_employee` VALUES (302, 'rewq ', '男', '2021-07-06', '422822199903235517', '未婚', 1, 'rweq', 1, '232@qq.com', '11111111111', 'fdsafweqrfewq', 6, 2, 1, '劳动合同', '高中', 'rew', 'gvrfwq', '2021-07-20', '离职', '00000101', 0.04, '2021-07-14', NULL, '2021-07-20', '2021-08-03', NULL, NULL);
+INSERT INTO `t_employee` VALUES (303, 'rewq ', '男', '2021-07-06', '422822199903235517', '未婚', 1, 'rweq', 1, '232@qq.com', '11111111111', 'fdsafweqrfewq', 6, 2, 1, '劳动合同', '高中', 'rew', 'gvrfwq', '2021-07-20', '离职', '00000101', 0.04, '2021-07-14', NULL, '2021-07-20', '2021-08-03', NULL, NULL);
+INSERT INTO `t_employee` VALUES (304, 'rewq ', '男', '2021-07-06', '422822199903235517', '未婚', 1, 'rweq', 1, '232@qq.com', '11111111111', 'fdsafweqrfewq', 6, 2, 1, '劳动合同', '高中', 'rew', 'gvrfwq', '2021-07-20', '离职', '00000101', 0.04, '2021-07-14', NULL, '2021-07-20', '2021-08-03', NULL, NULL);
+INSERT INTO `t_employee` VALUES (305, 'rewq ', '男', '2021-07-06', '422822199903235517', '未婚', 1, 'rweq', 1, '232@qq.com', '11111111111', 'fdsafweqrfewq', 6, 2, 1, '劳动合同', '高中', 'rew', 'gvrfwq', '2021-07-20', '离职', '00000101', 0.04, '2021-07-14', NULL, '2021-07-20', '2021-08-03', NULL, NULL);
+INSERT INTO `t_employee` VALUES (306, 'rewq ', '男', '2021-07-06', '422822199903235517', '未婚', 1, 'rweq', 1, '232@qq.com', '11111111111', 'fdsafweqrfewq', 6, 2, 1, '劳动合同', '高中', 'rew', 'gvrfwq', '2021-07-20', '离职', '00000101', 0.04, '2021-07-14', NULL, '2021-07-20', '2021-08-03', NULL, NULL);
+INSERT INTO `t_employee` VALUES (307, 'rewq ', '男', '2021-07-06', '422822199903235517', '未婚', 1, 'rweq', 1, '232@qq.com', '11111111111', 'fdsafweqrfewq', 6, 2, 1, '劳动合同', '高中', 'rew', 'gvrfwq', '2021-07-20', '离职', '00000101', 0.04, '2021-07-14', NULL, '2021-07-20', '2021-08-03', NULL, NULL);
+INSERT INTO `t_employee` VALUES (308, 'rewq', '女', '2021-07-05', '422822199903235517', '已婚', 1, 'rweq', 1, 'ujriqwo@qq.com', '11111111111', 'rewqr', 7, 1, 1, '劳动合同', '硕士', 'rewq', 'rweqr', '2021-07-26', '在职', '00000102', -0.02, '2021-07-22', NULL, '2021-07-28', '2021-07-21', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_employee_ec
@@ -387,6 +397,14 @@ CREATE TABLE `t_mail_log`  (
 -- ----------------------------
 -- Records of t_mail_log
 -- ----------------------------
+INSERT INTO `t_mail_log` VALUES ('083c24d3-28f5-4832-904c-cab8eef1ccd9', 302, 1, 'mail.routing.key', 'mail.exchange', 1, '2021-07-01 14:06:00', '2021-07-01 13:15:18', '2021-07-01 14:05:00');
+INSERT INTO `t_mail_log` VALUES ('22ab33ab-5398-4f5d-a21d-c5eaeb49c584', 303, 1, 'mail.routing.key', 'mail.exchange', 1, '2021-07-01 14:06:00', '2021-07-01 13:15:22', '2021-07-01 14:05:00');
+INSERT INTO `t_mail_log` VALUES ('6df66394-d798-45e8-921f-a464177506ad', 301, 1, 'mail.routing.key', 'mail.exchange', 1, '2021-07-01 14:06:00', '2021-07-01 13:13:04', '2021-07-01 14:05:00');
+INSERT INTO `t_mail_log` VALUES ('7a63a097-eae9-434f-be9a-9307b2645ef0', 304, 1, 'mail.routing.key', 'mail.exchange', 1, '2021-07-01 14:06:00', '2021-07-01 13:15:49', '2021-07-01 14:05:00');
+INSERT INTO `t_mail_log` VALUES ('9a4e5c5f-d178-4801-9fc0-d3434650d349', 308, 1, 'mail.routing.key', 'mail.exchange', 0, '2021-07-01 16:35:35', '2021-07-01 16:34:35', '2021-07-01 16:34:35');
+INSERT INTO `t_mail_log` VALUES ('adb4929f-bac5-4300-80d5-59cabf14cd84', 305, 1, 'mail.routing.key', 'mail.exchange', 1, '2021-07-01 14:06:00', '2021-07-01 13:15:52', '2021-07-01 14:05:00');
+INSERT INTO `t_mail_log` VALUES ('bd220b84-563f-4a8b-a27b-9f99e1905a76', 307, 1, 'mail.routing.key', 'mail.exchange', 0, '2021-07-01 16:27:45', '2021-07-01 16:26:45', '2021-07-01 16:26:45');
+INSERT INTO `t_mail_log` VALUES ('d477f7c1-451e-464c-83e9-c1c3a34806a1', 306, 1, 'mail.routing.key', 'mail.exchange', 1, '2021-07-01 14:06:00', '2021-07-01 13:15:59', '2021-07-01 14:05:00');
 
 -- ----------------------------
 -- Table structure for t_menu
@@ -453,7 +471,7 @@ CREATE TABLE `t_menu_role`  (
   INDEX `rid`(`rid`) USING BTREE,
   CONSTRAINT `t_menu_role_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `t_menu` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `t_menu_role_ibfk_2` FOREIGN KEY (`rid`) REFERENCES `t_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 386 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 429 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_menu_role
@@ -511,17 +529,28 @@ INSERT INTO `t_menu_role` VALUES (53, 28, 1);
 INSERT INTO `t_menu_role` VALUES (346, 11, 4);
 INSERT INTO `t_menu_role` VALUES (347, 8, 4);
 INSERT INTO `t_menu_role` VALUES (348, 7, 4);
-INSERT INTO `t_menu_role` VALUES (375, 7, 8);
-INSERT INTO `t_menu_role` VALUES (376, 8, 8);
-INSERT INTO `t_menu_role` VALUES (377, 10, 8);
-INSERT INTO `t_menu_role` VALUES (378, 11, 8);
-INSERT INTO `t_menu_role` VALUES (379, 12, 8);
-INSERT INTO `t_menu_role` VALUES (380, 13, 8);
-INSERT INTO `t_menu_role` VALUES (381, 14, 8);
-INSERT INTO `t_menu_role` VALUES (382, 15, 8);
-INSERT INTO `t_menu_role` VALUES (383, 16, 8);
-INSERT INTO `t_menu_role` VALUES (384, 17, 8);
-INSERT INTO `t_menu_role` VALUES (385, 18, 8);
+INSERT INTO `t_menu_role` VALUES (407, 1, 8);
+INSERT INTO `t_menu_role` VALUES (408, 2, 8);
+INSERT INTO `t_menu_role` VALUES (409, 3, 8);
+INSERT INTO `t_menu_role` VALUES (410, 4, 8);
+INSERT INTO `t_menu_role` VALUES (411, 5, 8);
+INSERT INTO `t_menu_role` VALUES (412, 6, 8);
+INSERT INTO `t_menu_role` VALUES (413, 7, 8);
+INSERT INTO `t_menu_role` VALUES (414, 8, 8);
+INSERT INTO `t_menu_role` VALUES (415, 9, 8);
+INSERT INTO `t_menu_role` VALUES (416, 10, 8);
+INSERT INTO `t_menu_role` VALUES (417, 11, 8);
+INSERT INTO `t_menu_role` VALUES (418, 12, 8);
+INSERT INTO `t_menu_role` VALUES (419, 13, 8);
+INSERT INTO `t_menu_role` VALUES (420, 14, 8);
+INSERT INTO `t_menu_role` VALUES (421, 15, 8);
+INSERT INTO `t_menu_role` VALUES (422, 16, 8);
+INSERT INTO `t_menu_role` VALUES (423, 17, 8);
+INSERT INTO `t_menu_role` VALUES (424, 18, 8);
+INSERT INTO `t_menu_role` VALUES (425, 19, 8);
+INSERT INTO `t_menu_role` VALUES (426, 20, 8);
+INSERT INTO `t_menu_role` VALUES (427, 21, 8);
+INSERT INTO `t_menu_role` VALUES (428, 22, 8);
 
 -- ----------------------------
 -- Table structure for t_nation

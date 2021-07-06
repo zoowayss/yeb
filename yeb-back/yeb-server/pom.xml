@@ -102,6 +102,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
+        <!-- Spring-Session Redis 实现Session共享-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
         <!-- Websocket 依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -126,6 +133,7 @@
 <!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
 <!--            <scope>provided</scope>-->
 <!--        </dependency>-->
+
 
     </dependencies>
 

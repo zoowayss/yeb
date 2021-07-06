@@ -88,6 +88,7 @@ public class MailRecv {
             //发送邮件
             javaMailSender.send(mimeMessage);
             hashOperations.put("mail_log", msgId, "OK");
+            LOGGER.info("消息已经被消费=========》{}", msgId);
             //手动确认一条消息
             channel.basicAck(tag, false);
         } catch (Exception e) {

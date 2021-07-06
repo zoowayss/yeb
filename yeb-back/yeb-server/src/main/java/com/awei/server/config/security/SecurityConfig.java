@@ -110,6 +110,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/index.html",
                 "/fonts/**",
                 "/favicon.ico",
+                "/system/cfg/menu",
                 "/doc.html",
                 "/captcha",
                 "/webjars/**",

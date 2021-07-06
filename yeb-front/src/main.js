@@ -8,7 +8,6 @@ import {getRequest} from "@/utils/api";
 import {postRequest} from "@/utils/api";
 import {putRequest} from "@/utils/api";
 import {deleteRequest} from "@/utils/api";
-import {initMenu} from "@/utils/menus";
 import 'font-awesome/css/font-awesome.css'
 import {downloadRequest} from "@/utils/download";
 Vue.prototype.getRequest = getRequest;
@@ -25,19 +24,24 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-router.beforeEach((to,from,next)=>{
-  if (window.sessionStorage.getItem('tokenStr')) {
-    // 已经登录
-    initMenu(router,store);
-    next();
+// router.beforeEach((to,from,next)=>{
+//   if (window.sessionStorage.getItem('tokenStr')) {
+//     // 已经登录
+//     initMenu(router,store);
+//     next();
+//
+//   }else {
+//     console.log(123);
+//     //未登录  这里是 logout 之后 未登录，去 / 要放行
+//     if (to.path == '/') {
+//       next();
+//     }else {
+//       next('/?redirect='+to.path);
+//     }
+//
+//   }
+// })
 
-  }else {
-    if (to.path == '/') {
-      next();
-    }else {
-      next('/?redirect='+to.path);
-    }
 
-  }
-})
+
 

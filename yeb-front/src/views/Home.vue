@@ -5,6 +5,7 @@
         <div class="title">云e办</div>
         <el-dropdown class="userInfo" @command="handleCommand">
           <span class="el-dropdown-link">
+<!--            {{ this.$store.state.user.name }}<i> <img :src="this.$store.state.user.userFace"></i>-->
             {{ user.name }}<i> <img :src="user.userFace"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
@@ -37,7 +38,7 @@
             <el-breadcrumb-item><a href="/">{{this.$router.currentRoute.name}}</a></el-breadcrumb-item>
           </el-breadcrumb>
           <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
-            欢迎来到云E办系统
+            欢迎来到云E办人事管理系统
           </div>
           <router-view class="homeRouterview"/>
         </el-main>
@@ -51,7 +52,7 @@ export default {
   name: "Home",
   data() {
     return {
-      user: JSON.parse(window.sessionStorage.getItem('user'))
+      user: this.$store.state.user
     }
   },
   computed: {
@@ -79,6 +80,8 @@ export default {
           // 清空用户信息
           window.sessionStorage.removeItem('tokenStr');
           window.sessionStorage.removeItem('user');
+          this.$store.commit('initRoutes', []);
+          // this.$store.commit('initUser', []);
           //页面跳转
           this.$router.replace('/')
         }).catch(() => {

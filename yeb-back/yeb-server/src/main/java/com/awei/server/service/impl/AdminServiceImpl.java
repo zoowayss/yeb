@@ -67,10 +67,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public RespBean login(String username, String password,String code,HttpServletRequest request) {
-        /*String captcha = (String) request.getSession().getAttribute("captcha");
-        if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)) {
-            return RespBean.error("验证码输入错误，请重新输入");
-        }*/
+
 
         String captcha = (String) request.getSession().getAttribute("captcha");
 //         运行时打开，测试时懒得写验证码

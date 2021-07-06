@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from "../views/Login";
+import store from "@/store";
+import {initMenu} from "@/utils/menus";
 
 Vue.use(VueRouter)
 
@@ -27,12 +29,26 @@ const routes = [
     path: '/',
     name:Login,
     component:Login,
-    hidden:true
+    hidden:true,
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
 })
+router.beforeEach((to, from, next)=> {
+      if (to.path == '/') {
+        next();
+        return;
+      }
+      var name = store.state.user.name;
+      if (name == '未登录') {
+        next({path: '/', query: {redirect: to.path}})
+      } else {
+        initMenu(router, store);
+        next();
+      }
+    }
+)
 
 export default router
